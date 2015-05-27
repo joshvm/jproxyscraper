@@ -55,7 +55,7 @@ public class ProxyScraper implements Runnable{
                 }
                 sleep(PAGE_DELAY);
             }
-            sleep(provider.getIntervalMillis());
+            sleep(provider.getInterval());
         }
     }
 

@@ -25,7 +25,7 @@ public enum Provider {
         this.minPage = minPage;
         this.maxPage = maxPage;
 
-        this.interval = 30 + (maxPage * 5);
+        this.interval = (30 + (maxPage * 5)) * 60 * 1000;
     }
 
     private Provider(final String url){
@@ -48,11 +48,7 @@ public enum Provider {
         return maxPage;
     }
 
-    public int getIntervalMins(){
+    public int getInterval(){
         return interval;
-    }
-
-    public int getIntervalMillis(){
-        return interval * 60000;
     }
 }
