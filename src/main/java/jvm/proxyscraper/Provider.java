@@ -14,7 +14,15 @@ public enum Provider {
     TOR_VPN("http://torvpn.com/proxylist.html"),
     NORD_VPN("https://nordvpn.com/free-proxy-list/%d/", 1, 8371),
     FREE_PROXY_LISTS("http://www.freeproxylists.net/?page=%d", 1, 31),
-    PROXY_LIST("http://proxy-list.org/english/index.php?p=%d", 1, 10);
+    PROXY_LIST("http://proxy-list.org/english/index.php?p=%d", 1, 10),
+    BLACKHAT_POST_1("http://www.blackhatworld.com/blackhat-seo/proxy-lists/760775-hidemyass-premium-proxy-list-updated-daily-weekly-free.html"),
+    PROXY_FIRE_ELITE("http://www.proxyfire.net/index.php?pageid=eliteproxylist"),
+    PROXY_FIRE_ANON("http://www.proxyfire.net/index.php?pageid=anonymousproxylist"),
+    PROXY_FIRE_SOCKS4("http://www.proxyfire.net/index.php?pageid=socks4proxylist"),
+    PROXY_FIRE_SOCKS5("http://www.proxyfire.net/index.php?pageid=socks5proxylist"),
+    SOCKS_LIST("http://sockslist.net/proxy/server-socks-hide-ip-address/1", 1, 3),
+    IP_ADRESS("http://www.ip-adress.com/proxy_list/"),
+    PROXY_LIST_RO("http://www.proxylist.ro/free-fresh-proxy-list-%d.html", 0, 31);
 
     private final String urlFormat;
     private final int minPage;
