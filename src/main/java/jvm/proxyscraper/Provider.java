@@ -13,12 +13,15 @@ public enum Provider {
     COOL_PROXY("http://www.cool-proxy.net/proxies/http_proxy_list/page:%d", 1, 30),
     TOR_VPN("http://torvpn.com/proxylist.html"),
     NORD_VPN("https://nordvpn.com/free-proxy-list/%d/", 1, 8371),
-    FREE_PROXY_LISTS("http://www.freeproxylists.net/?page=%d", 1, 31);
+    FREE_PROXY_LISTS("http://www.freeproxylists.net/?page=%d", 1, 31),
+    PROXY_LIST("http://proxy-list.org/english/index.php?p=%d", 1, 10);
 
     private final String urlFormat;
     private final int minPage;
     private final int maxPage;
     private final int interval;
+
+    private ProxyScraper scraper;
 
     private Provider(final String urlFormat, final int minPage, final int maxPage){
         this.urlFormat = urlFormat;
@@ -30,6 +33,12 @@ public enum Provider {
 
     private Provider(final String url){
         this(url, 1, 1);
+    }
+
+    public ProxyScraper getScraper(){
+        if(scraper == null)
+            scraper = new ProxyScraper(this);
+        return scraper;
     }
 
     public String getUrl(final int page){

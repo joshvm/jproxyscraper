@@ -30,11 +30,15 @@ public final class ProxyScraperService {
         service.shutdown();
     }
 
+    public static void stopNow(){
+        service.shutdownNow();
+    }
+
     public static void start(){
         Logger.getLogger("com.gargoylesoftware").setLevel(Level.OFF);
         final Provider[] providers = Provider.values();
         service = Executors.newFixedThreadPool(providers.length);
         for(final Provider provider : providers)
-            service.execute(new ProxyScraper(provider));
+            service.execute(provider.getScraper());
     }
 }

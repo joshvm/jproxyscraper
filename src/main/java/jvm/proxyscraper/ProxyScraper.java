@@ -35,7 +35,7 @@ public class ProxyScraper implements Runnable{
                         final Matcher addressMatcher = ADDRESS_PATTERN.matcher(text);
                         while(addressMatcher.find()){
                             final String match = addressMatcher.group();
-                            final String address = match.replaceAll("[:\\s+]", ":");
+                            final String address = match.replaceAll("[:\\s*]", ":");
                             final int i = address.indexOf(':');
                             if(i == -1)
                                 continue;
