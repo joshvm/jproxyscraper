@@ -38,7 +38,7 @@ public class ProxyWriter implements AutoCloseable{
         return cache.add(proxy) && write(proxy, flush);
     }
 
-    public boolean write(final Proxy proxy, final boolean flush){
+    public synchronized boolean write(final Proxy proxy, final boolean flush){
         final InetSocketAddress addr = (InetSocketAddress) proxy.address();
         try{
             writer.write(String.format("%s %s %d", proxy.type().name(), addr.getHostString(), addr.getPort()));

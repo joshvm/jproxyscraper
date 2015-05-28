@@ -2,6 +2,7 @@ package jvm.proxyscraper;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import jvm.proxyscraper.util.ProxyUtils;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -44,10 +45,9 @@ public class ProxyScraper implements Runnable{
                             if(!portStr.matches("\\d+"))
                                 continue;
                             final int port = Integer.parseInt(portStr);
-                            try{
-                                final Proxy proxy = new Proxy(typeStr.equals("SOCKS") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(ip, port));
+                            final Proxy proxy = new Proxy(typeStr.equals("SOCKS") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(ip, port));
+                            if(ProxyUtils.test(proxy))
                                 ProxyScraperService.onProxy(provider, proxy);
-                            }catch(Exception ex){}
                         }
                     }
                 }catch(Exception ex){
