@@ -3,17 +3,19 @@ package jvm.proxyscraper.test;
 import jvm.proxyscraper.Provider;
 import jvm.proxyscraper.ProxyScraperService;
 import jvm.proxyscraper.event.ProxyListener;
+import jvm.proxyscraper.io.ProxyWriter;
 
+import java.io.File;
 import java.net.Proxy;
-import java.util.Date;
 
 public class Test {
 
     public static void main(String[] args) throws Exception{
+        final ProxyWriter writer = ProxyWriter.to(new File("proxies.txt"), false);
         ProxyScraperService.addListener(
                 new ProxyListener() {
                     public void onProxy(final Provider provider, final Proxy proxy){
-                        System.out.printf("[%s - %s] Scraped Proxy %s\n", new Date(), provider, proxy);
+                        writer.cacheAndWrite(proxy, true);
                     }
                 }
         );
