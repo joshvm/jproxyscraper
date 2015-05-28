@@ -15,6 +15,8 @@ public class ProxyScraper implements Runnable{
     private static final Pattern LINE_PATTERN = Pattern.compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\D+\\d{2,5}.*");
     private static final int PAGE_DELAY = 2000;
 
+    public static boolean validProxiesOnly;
+
     private final Provider provider;
 
     protected ProxyScraper(final Provider provider){
@@ -46,7 +48,7 @@ public class ProxyScraper implements Runnable{
                                 continue;
                             final int port = Integer.parseInt(portStr);
                             final Proxy proxy = new Proxy(typeStr.equals("SOCKS") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(ip, port));
-                            if(ProxyUtils.test(proxy))
+                            if(validProxiesOnly && ProxyUtils.test(proxy))
                                 ProxyScraperService.onProxy(provider, proxy);
                         }
                     }
