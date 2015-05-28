@@ -11,11 +11,11 @@ import java.net.Proxy;
 public class Test {
 
     public static void main(String[] args) throws Exception{
-        final ProxyWriter writer = ProxyWriter.to(new File("proxies.txt"), false);
+        final ProxyWriter writer = ProxyWriter.to(new File("proxies.txt"));
         ProxyScraperService.addListener(
                 new ProxyListener() {
                     public void onProxy(final Provider provider, final Proxy proxy){
-                        writer.cacheAndWrite(proxy, true);
+                        writer.write(proxy, true);
                     }
                 }
         );

@@ -90,4 +90,8 @@ public class ProxyWriter implements AutoCloseable{
             return null;
         }
     }
+
+    public static ProxyWriter to(final File out){
+        return to(out, false);
+    }
 }
