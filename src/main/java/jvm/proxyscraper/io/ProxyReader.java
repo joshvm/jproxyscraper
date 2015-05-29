@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class ProxyReader implements AutoCloseable{
 
-    private static final Pattern DELIMITER = Pattern.compile("(HTTP|SOCKS|DIRECT) \\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3} \\d{2,5}");
+    private static final Pattern PROXY_PATTERN = Pattern.compile("(HTTP|SOCKS|DIRECT) \\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3} \\d{2,5}");
 
     private final Scanner input;
     private Matcher matcher;
@@ -29,7 +29,7 @@ public class ProxyReader implements AutoCloseable{
         if(matcher != null && matcher.find())
             return true;
         while(input.hasNextLine()){
-            matcher = DELIMITER.matcher(input.nextLine());
+            matcher = PROXY_PATTERN.matcher(input.nextLine());
             if(matcher.find())
                 return true;
         }
