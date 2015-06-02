@@ -48,12 +48,12 @@ public class ProxyScraper implements Runnable{
                                 continue;
                             final int port = Integer.parseInt(portStr);
                             final Proxy proxy = new Proxy(typeStr.equals("SOCKS") ? Proxy.Type.SOCKS : Proxy.Type.HTTP, new InetSocketAddress(ip, port));
-                            if(validProxiesOnly && ProxyUtils.test(proxy))
+                            if(!validProxiesOnly || (validProxiesOnly && ProxyUtils.test(proxy)))
                                 ProxyScraperService.onProxy(provider, proxy);
                         }
                     }
                 }catch(Exception ex){
-                    //ex.printStackTrace();
+                    ex.printStackTrace();
                 }
                 sleep(PAGE_DELAY);
             }
